@@ -1,0 +1,10 @@
+<h1 style="text-align: center;">Have you found a cat?</h1>
+
+<form action="/animals/<%= index %>" method="POST">
+        <%#
+          This hidden input is necessary for Sinatrato recognise
+          this as a DELETE request.
+        %>
+        <input type="hidden" name="_method" value="DELETE">
+        <button>Yes, I have found a cat! <%= animal %></button>
+</form>

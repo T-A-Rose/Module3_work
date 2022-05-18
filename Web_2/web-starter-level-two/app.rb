@@ -6,6 +6,8 @@ require 'sinatra/reloader'
 # You will want to require your data model class here
 require "animal_list"
 
+require "animal"
+
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
   use Rack::MethodOverride
@@ -45,7 +47,8 @@ class WebApplicationServer < Sinatra::Base
   end
 
   post '/animals' do
-    animal_list.add(params[:species])
+    animal = Animal.new(params[:species], params[:animal_name], params[:animal_colour], params[:animal_size], params[:owners_name], params[:owners_number])
+    animal_list.add(animal)
     redirect '/animals'
   end
 
@@ -62,9 +65,18 @@ class WebApplicationServer < Sinatra::Base
     }
   end
 
+  get '/animals/:index/found' do
+    animal_index = params[:index].to_i
+    erb :animals_found, locals: {
+      index: animal_index,
+      animal: animal_list.get(animal_index)
+    }
+  end
+
   patch '/animals/:index' do
     animal_index = params[:index].to_i
-    animal_list.update(animal_index, params[:species])
+    animal = Animal.new(params[:species], params[:animal_name], params[:animal_colour], params[:animal_size], params[:owners_name], params[:owners_number])
+    animal_list.update(animal_index, animal)
     redirect '/animals'
   end
 

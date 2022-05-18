@@ -10,7 +10,27 @@
   <p>
     <label for="species">Species</label>
     <br>
-    <input type="text" id="species" name="species" value="<%= animal %>">
+    <input type="text" id="species" name="species" value="<%= animal.species %>">
+    <br>
+    <label for="name">Animal Name</label>
+    <br>
+    <input type="text" id="AnimalName" name="animal_name" <%= animal.animal_name %>>
+    <br>
+    <label for="colour">Colour</label>
+    <br>
+    <input type="text" id="AnimalColour" name="animal_colour" <%= animal.animal_colour %>>
+    <br>
+    <label for="size">Size</label>
+    <br>
+    <input type="text" id="AnimalSize" name="animal_size" <%= animal.animal_size %>>
+    <br>
+    <label for="size">Owners Name</label>
+    <br>
+    <input type="text" id="OwnersName" name="owners_name" <%= animal.owners_name %>>
+    <br>
+    <label for="size">Owners Number</label>
+    <br>
+    <input type="text" id="OwnersNumber" name="owners_number" <%= animal.owners_number %>>
   </p>
 
   <input type="submit" value="Update Animal">
