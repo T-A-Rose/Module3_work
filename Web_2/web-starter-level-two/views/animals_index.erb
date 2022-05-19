@@ -27,7 +27,7 @@
 
       <p>
         <a href="/animals/<%= index %>/edit">
-          <button>Edit <%= animal %></button>
+          <button>Edit <%= animal.species %></button>
         </a>
       </p>
 
@@ -37,7 +37,7 @@
           this as a DELETE request.
         %>
         <input type="hidden" name="_method" value="DELETE">
-        <button>Delete <%= animal %></button>
+        <button>Delete <%= animal.species %></button>
       </form>
     </section>
   <% end %>
