@@ -4,6 +4,10 @@
 
 _Put or write the user stories here. Add any clarifying notes you might have._
 
+_The user wants to find the cat they've lost, by posting an advert for the cat with a description and their telephone number so people can contact them.
+
+_The 2nd user wants to be able to view the adverts for lost cats and help people find their lost cat.
+
 ## 2. Design the Interface
 
 _This is the fun part! Use excalidraw.com or a similar tool to design some
@@ -20,7 +24,7 @@ _Include the initializer and public methods with all parameters and return value
 ```ruby
 # EXAMPLE
 
-class Diary
+class LostAnimalWebsite
   def initialize
   end
 
@@ -28,7 +32,7 @@ class Diary
     # Returns a list of instances of DiaryEntries
   end
 
-  def add(entry) # entry is a DiaryEntry
+  def add(name, breed, colour, size, age, notable markings, last seen loc) # entry is a DiaryEntry
     # No return value
   end
 
