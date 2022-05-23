@@ -13,11 +13,11 @@ RSpec.describe "Inserting Records" do
     return db
   end
 
-  xit "inserts a record" do
+  it "inserts a record" do
     db = setup_db
 
     # Fill out this line to insert a new rock to pass the test
-    db.run("SELECT 1;")
+    db.run("INSERT INTO rocks (name, weight, qualities) VALUES ('Granite', 5, 'crumbly')")
 
     # Don't edit this
     result = db.run("SELECT * FROM rocks;")
@@ -26,13 +26,13 @@ RSpec.describe "Inserting Records" do
     ])
   end
 
-  xit "inserts a record using placeholders" do
+  it "inserts a record using placeholders" do
     db = setup_db
 
     # Fill out this line to insert a new rock to pass the test
     # Ensure you are using placeholders to insert data
-    sql = "SELECT 1;"
-    fields = []
+    sql = "INSERT INTO rocks (name, weight, qualities) VALUES ($1, $2, $3);"
+    fields = ['Granite', '5', 'crumbly']
 
     # Don't edit this
     db.run(verify_placeholders(sql), fields)
@@ -42,15 +42,15 @@ RSpec.describe "Inserting Records" do
     ])
   end
 
-  xit "inserts multiple records" do
+  it "inserts multiple records" do
     db = setup_db
 
     # Fill out these lines to insert new rocks to pass the test
-    db.run(verify_placeholders("SELECT 1;"), [])
-    db.run(verify_placeholders("SELECT 1;"), [])
-    db.run(verify_placeholders("SELECT 1;"), [])
-    db.run(verify_placeholders("SELECT 1;"), [])
-    db.run(verify_placeholders("SELECT 1;"), [])
+    db.run(verify_placeholders("INSERT INTO rocks (name, weight, qualities) VALUES ($1, $2, $3);"), ['Granite', '5', 'crumbly'])
+    db.run(verify_placeholders("INSERT INTO rocks (name, weight, qualities) VALUES ($1, $2, $3);"), ['Quartz', '2', 'cracky'])
+    db.run(verify_placeholders("INSERT INTO rocks (name, weight, qualities) VALUES ($1, $2, $3);"), ['Basalt', '10', 'hard'])
+    db.run(verify_placeholders("INSERT INTO rocks (name, weight, qualities) VALUES ($1, $2, $3);"), ['Andesite', '15', 'rough'])
+    db.run(verify_placeholders("INSERT INTO rocks (name, weight, qualities) VALUES ($1, $2, $3);"), ['Dacite', '20', 'cutie-pie'])
 
     # Don't edit this
     result = db.run("SELECT * FROM rocks;")
@@ -59,22 +59,22 @@ RSpec.describe "Inserting Records" do
       { "id" => "2", "name" => "Quartz", "weight" => "2", "qualities" => "cracky" },
       { "id" => "3", "name" => "Basalt", "weight" => "10", "qualities" => "hard" },
       { "id" => "4", "name" => "Andesite", "weight" => "15", "qualities" => "rough" },
-      { "id" => "5", "name" => "Dacite", "weight" => "20", "qualities" => "'cutie-pie'" }
+      { "id" => "5", "name" => "Dacite", "weight" => "20", "qualities" => "cutie-pie" }
     ])
   end
 
   # You will sometimes need to get the ID of the record you just inserted, so
   # you can direct the user to the newly created record. This challenge is
   # about that.
-  xit "gets the ID of the inserted record" do
+  it "gets the ID of the inserted record" do
     db = setup_db
     insert_random_number_of_records(db) # Don't edit this
 
     # Fill out these lines to insert a new rock to pass the test
     # You also need to get the ID of record you just inserted
     # For this, look up `RETURNING id`.
-    result = db.run(verify_placeholders("SELECT 1;"), [])
-    id = 0 # This will need to change too.
+    result = db.run(verify_placeholders("INSERT INTO rocks (name, weight, qualities) values ($1, $2, $3) RETURNING id;"), ["Granite", "5", "crumbly"])
+    id = result[0]['id'] # This will need to change too.
 
     # Don't edit this
     result = db.run("SELECT * FROM rocks WHERE id = $1;", [id])
