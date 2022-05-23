@@ -17,12 +17,12 @@ RSpec.describe "Selecting Records" do
     return db
   end
 
-  xit "selects all records" do
+  it "selects all records" do
     db = setup_db
 
     # Fill out this line to query the animals table and get all the records
     # This is one you can Google if you don't know how
-    result = db.run("SELECT 1;")
+    result = db.run("SELECT * FROM animals")
 
     # Don't edit this
     expect(result.to_a).to eq([
@@ -34,12 +34,12 @@ RSpec.describe "Selecting Records" do
     ])
   end
 
-  xit "selects all records sorted by ID descending" do
+  it "selects all records sorted by ID descending" do
     db = setup_db
 
     # Fill out this line to query the animals table and get all the records
     # ordered by ID from highest to lowest
-    result = db.run("SELECT 1;")
+    result = db.run("SELECT * FROM animals ORDER BY id DESC")
 
     # Don't edit this
     expect(result.to_a).to eq([
@@ -51,11 +51,11 @@ RSpec.describe "Selecting Records" do
     ])
   end
 
-  xit "selects only some records" do
+  it "selects only some records" do
     db = setup_db
 
     # Fill out this line to query the animals table and get only the dogs
-    result = db.run("SELECT 1;")
+    result = db.run("SELECT * FROM animals WHERE species = 'dog';")
 
     # Don't edit this
     expect(result.to_a).to eq([
@@ -64,13 +64,13 @@ RSpec.describe "Selecting Records" do
     ])
   end
 
-  xit "selects only some records using placeholders" do
+  it "selects only some records using placeholders" do
     db = setup_db
 
     # Fill out this line to query the animals table and get only the dogs
     # Ensure you are using placeholders
-    sql = "SELECT 1;"
-    fields = []
+    sql = "SELECT * FROM animals WHERE species LIKE $1;"
+    fields = ['dog']
 
     # Don't edit this
     result = db.run(verify_placeholders(sql), fields)
@@ -80,11 +80,11 @@ RSpec.describe "Selecting Records" do
     ])
   end
 
-  xit "selects only some fields of some records" do
+  it "selects only some fields of some records" do
     db = setup_db
 
     # Fill out this line to query the animals table and get only the names of the dogs
-    result = db.run(verify_placeholders("SELECT 1;"), [])
+    result = db.run(verify_placeholders("SELECT name FROM animals WHERE species = $1"), ['dog'])
 
     # Don't edit this
     expect(result.to_a).to eq([
@@ -93,11 +93,11 @@ RSpec.describe "Selecting Records" do
     ])
   end
 
-  xit "selects a single record" do
+  it "selects a single record" do
     db = setup_db
 
     # Fill out this line to query the animals table and get just the record with the ID 3.
-    result = db.run(verify_placeholders("SELECT 1;"), [])
+    result = db.run(verify_placeholders("SELECT * FROM animals WHERE id = $1"), ['3'])
 
     # Don't edit this
     expect(result.to_a).to eq([
