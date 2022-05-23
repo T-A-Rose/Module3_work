@@ -7,13 +7,16 @@ RSpec.describe "Creating Tables" do
     return db
   end
 
-  xit "creates a table with an ID and a single field" do
+  it "creates a table with an ID and a single field" do
     db = setup_db
 
     # Fill out this line to create a table with these fields:
     #   id (should auto-increment when inserts are made)
     #   name
-    db.run("SELECT 1;")
+    db.run("CREATE TABLE hats (
+      id SERIAL PRIMARY KEY,
+      name TEXT
+    );")
 
     # Don't edit this
     db.run("INSERT INTO hats (name) VALUES ($1);", ["top hat"])
@@ -27,7 +30,7 @@ RSpec.describe "Creating Tables" do
     ])
   end
 
-  xit "creates a table with multiple fields" do
+  it "creates a table with multiple fields" do
     db = setup_db
 
     # Fill out this line to create a table with these fields:
@@ -38,7 +41,14 @@ RSpec.describe "Creating Tables" do
     #   telephone number
     #   is_sold
     # Think carefully about what the types should be!
-    db.run("SELECT 1;")
+    db.run("CREATE TABLE hats (
+      id SERIAL PRIMARY KEY,
+      name TEXT,
+      price DECIMAL,
+      description TEXT,
+      telephone_number TEXT,
+      is_sold BOOL
+    );")
 
     # Don't edit this
     db.run("INSERT INTO hats (name, price, description, telephone_number, is_sold) VALUES ($1, $2, $3, $4, $5);", ["top hat", "10.00", "A top hat", "07800000000", "false"])
