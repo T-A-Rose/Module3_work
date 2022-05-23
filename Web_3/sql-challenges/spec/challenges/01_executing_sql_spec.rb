@@ -1,7 +1,7 @@
 require "database_connection"
 
 RSpec.describe "Executing SQL" do
-  xit "connects successfully" do
+  it "connects successfully" do
     # This connects to the databse `sql_challenges` on your local computer
     # If it fails, your machine probably isn't set up right yet.
     # Consult the README, then your coach.
@@ -15,12 +15,12 @@ RSpec.describe "Executing SQL" do
     expect(result.first["output"]).to eq("Hello, world!")
   end
 
-  xit "uses placeholders" do
+  it "uses placeholders" do
     db = DatabaseConnection.new("localhost", "sql_challenges")
 
     # We can also use placeholders to pass data into the SQL.
     # Edit this line to make the test pass.
-    result = db.run("SELECT $1 as output;", ["Hello, world!"])
+    result = db.run("SELECT $1 as output;", ["Hello, engineer!"])
 
     # Don't edit this line!
     expect(result.first["output"]).to eq("Hello, engineer!")
