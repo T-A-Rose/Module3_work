@@ -17,11 +17,11 @@ RSpec.describe "Updating Records" do
     return db
   end
 
-  xit "updates a single record" do
+  it "updates a single record" do
     db = setup_db
 
     # Fill out this line to update the name of the record with the ID 2 to have the name "Felix"
-    db.run(verify_two_placeholders("SELECT 1;"), [])
+    db.run(verify_two_placeholders("UPDATE animals SET name = $1, species = $2 WHERE id = 2;"), ['Felix', 'cat'])
 
     # Don't edit this
     result = db.run("SELECT * FROM animals ORDER BY id ASC;")
@@ -34,11 +34,11 @@ RSpec.describe "Updating Records" do
     ])
   end
 
-  xit "updates records that match a criteria" do
+  it "updates records that match a criteria" do
     db = setup_db
 
     # Fill out this line to update all the cats to have the name "Felix"
-    db.run(verify_two_placeholders("SELECT 1;"), [])
+    db.run(verify_two_placeholders("UPDATE animals SET name = $1, species = $2 WHERE species = 'cat';"), ['Felix', 'cat'])
 
     # Don't edit this
     result = db.run("SELECT * FROM animals ORDER BY id ASC;")
@@ -51,11 +51,11 @@ RSpec.describe "Updating Records" do
     ])
   end
 
-  xit "updates all records" do
+  it "updates all records" do
     db = setup_db
 
     # Fill out this line to update all the records to have the name "Kermit"
-    db.run(verify_one_placeholder("SELECT 1;"), [])
+    db.run(verify_one_placeholder("UPDATE animals SET name = $1"), ['Kermit'])
 
     # Don't edit this
     result = db.run("SELECT * FROM animals ORDER BY id ASC;")
