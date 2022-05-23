@@ -17,11 +17,11 @@ RSpec.describe "Deleting Records" do
     return db
   end
 
-  xit "deletes a single record" do
+  it "deletes a single record" do
     db = setup_db
 
     # Fill out this line to delete the record with the ID 3 from the animals table.
-    db.run(verify_placeholders("SELECT 1;"), [])
+    db.run(verify_placeholders("DELETE FROM animals WHERE id = $1;"), ['3'])
 
     # Don't edit this
     result = db.run("SELECT * FROM animals;")
@@ -33,11 +33,11 @@ RSpec.describe "Deleting Records" do
     ])
   end
 
-  xit "deletes records that match a criteria" do
+  it "deletes records that match a criteria" do
     db = setup_db
 
     # Fill out this line to delete all the cats from the table
-    db.run(verify_placeholders("SELECT 1;"), [])
+    db.run(verify_placeholders("DELETE FROM animals WHERE species = $1;"), ['cat'])
 
     # Don't edit this
     result = db.run("SELECT * FROM animals;")
@@ -48,11 +48,11 @@ RSpec.describe "Deleting Records" do
     ])
   end
 
-  xit "deletes all records" do
+  it "deletes all records" do
     db = setup_db
 
     # Fill out this line to delete all the records from the table
-    db.run("SELECT 1;")
+    db.run("DELETE FROM animals")
 
     # Don't edit this
     result = db.run("SELECT * FROM animals;")
