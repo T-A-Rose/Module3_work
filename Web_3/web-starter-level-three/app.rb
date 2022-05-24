@@ -8,6 +8,9 @@ require "database_connection"
 require "animals_table"
 require "animal_entity"
 
+require "advert_table"
+require "advert_entry"
+
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
   use Rack::MethodOverride
@@ -32,12 +35,28 @@ class WebApplicationServer < Sinatra::Base
     $global[:animals_table] ||= AnimalsTable.new($global[:db])
   end
 
+  def advert_table
+    $global[:advert_table] ||=  AdvertTable.new($global[:db])
+  end
+
   # Start your server using `rackup`.
   # It will sit there waiting for requests. It isn't broken!
 
   # YOUR CODE GOES BELOW THIS LINE
 
-  # ...
+  get '/advert' do
+    erb :advert_index, locals: { advert: advert_table.list }
+  end
+
+  get "/advert/new" do
+    erb :advert_new
+  end
+
+  post '/advert' do
+    advert = AdvertEntry.new(params[:species])
+    advert_table.add(advert)
+    redirect '/advert'
+  end
 
   # EXAMPLE ROUTES
 

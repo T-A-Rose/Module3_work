@@ -2,7 +2,26 @@
 
 ## 1. Describe the Problem
 
-_Put or write the user stories here. Add any clarifying notes you might have._
+We want to create a website for listing lost pets
+
+Stage One
+As a user *CREATE*
+So that I can find my cat that I lost
+I want to post an advert for a lost cat with some description of the cat, and my telephone number so people can contact me
+
+As a user *READ*
+So that I can help others find their lost cats
+I want to see all of the lost cat adverts
+
+Stage Two
+As a user *DELETE*
+So that I can focus on the yet not-found cats
+I want to delete adverts for cats that have been found
+
+As a user *UPDATE*
+So that I can update lost cat adverts with potential sightings
+I want to update adverts
+
 
 ## 2. Design the Interface
 
@@ -21,13 +40,13 @@ Sheets or [AsciiTable](https://ozh.github.io/ascii-tables/) to do this._
 ```plain
 # Example
 
-Table name: diary_entries
+Table name: advert_entries
 
-| id (NUMBER) |  title (TEXT)   |     contents (TEXT)      |
-|-------------|-----------------|--------------------------|
-|           1 | What a nice day | Today was a great day... |
-|           2 | What a bad day  | Today was an awful da... |
-|           3 | What a cool day | Today was a cool day ... |
+| id (NUMBER) |  species (TEXT) |     animal_name (TEXT)   |    colour         |
+|-------------|-----------------|--------------------------|-------------------|
+|           1 |  Cat            |          Thomas          |       Grey        |
+|           2 | Doggo           |          Steven          |       Brown       |
+|           3 | Froggo          |          Fredrick        |       Green       |
 ```
 
 ## 4. Create Examples of User Interactions
@@ -38,19 +57,19 @@ _Create examples of user interactions and expectations._
 # As you learn the testing tools you might start writing with realistic test
 # code here, but at the start it's OK if it's just English or made up code.
 
-# View no entries
-visit "/diary"
-# User sees: You have no diary entries.
 
-# Add an entry
-visit "/diary"
-click link "Add Entry"
-enter "A beautiful day" into "Title" field
-enter "I had a very nice day it's true." into "Contents" field
-click button "Post"
-# User sees in the diary list:
-# A beautiful day
-# I had a very nice day it's true.
+# View no adverts
+visit "/advert"
+#The user will see an empty list
+
+# Add an advert
+visit "/advert"
+click link "Add advert"
+enter "Cat" into "Species" field
+enter "Thomas" into "animal_name" field
+enter "Grey" into "Colour" field
+click button "Add listing"
+
 
 # Multiple entries
 visit "/diary"

@@ -6,13 +6,8 @@ require "database_connection"
 # database tables are re-created.
 
 def reset_tables(db)
-  db.run("DROP TABLE IF EXISTS animals;")
-  db.run("CREATE TABLE animals (id SERIAL PRIMARY KEY, species TEXT NOT NULL);")
-
-  # Add your table creation SQL here
-  # Each one should be a pair of lines:
-  #   db.run("DROP TABLE IF EXISTS ...;")
-  #   db.run("CREATE TABLE ... (id SERIAL PRIMARY KEY, ...);")
+  db.run("DROP TABLE IF EXISTS adverts;")
+  db.run("CREATE TABLE adverts (id SERIAL PRIMARY KEY, species TEXT NOT NULL, animal_name TEXT NOT NULL, colour TEXT NOT NULL);")
 end
 
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")

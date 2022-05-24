@@ -1,0 +1,15 @@
+<h1>list your advert here</h1>
+
+<% if advert.empty? %>
+    There are no listings currently!
+<% else %>
+    <% advert.each do |entry| %>
+        <article>
+            <h3>lost animal; <%= entry.animal_name %> </h3>
+        </article>
+    <%end%>
+<%end%>
+
+<p>
+    <a href="/advert/new">Add new advert</a>
+</p>
