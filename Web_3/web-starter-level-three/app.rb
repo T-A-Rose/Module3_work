@@ -11,6 +11,7 @@ require "animal_entity"
 require "advert_table"
 require "advert_entry"
 
+
 class WebApplicationServer < Sinatra::Base
   # This line allows us to send HTTP Verbs like `DELETE` using forms
   use Rack::MethodOverride
@@ -53,10 +54,31 @@ class WebApplicationServer < Sinatra::Base
   end
 
   post '/advert' do
-    advert = AdvertEntry.new(params[:species])
+    advert = AdvertEntry.new(params[:species], params[:animal_name], params[:colour])
     advert_table.add(advert)
     redirect '/advert'
   end
+
+  delete '/advert/:index' do
+    advert_table.remove(params[:index].to_i)
+    redirect '/advert'
+  end
+  
+  get '/advert/:index/edit' do
+    advert_index = params[:index].to_i
+    erb :advert_edit, locals: {
+      index: advert_index,
+      advert: advert_table.get(advert_index)
+    }
+  end
+
+  patch '/advert/:index' do
+    advert_index = params[:index].to_i
+    advert_table.update(advert_index, params[:species])
+    redirect '/advert'
+  end
+
+ 
 
   # EXAMPLE ROUTES
 

@@ -3,9 +3,23 @@
 <% if advert.empty? %>
     There are no listings currently!
 <% else %>
-    <% advert.each do |entry| %>
+    <% advert.each_with_index do |entry| %>
         <article>
-            <h3>lost animal; <%= entry.animal_name %> </h3>
+            <h1 style ="text-align: center;">Lost animal: <%= entry.animal_name %> </h1>
+            <h3>Animal species: <%= entry.species %> </h3>
+            <h3>Animal name: <%= entry.animal_name %> </h3>
+            <h3>Animal colour: <%= entry.colour %> </h3>
+        
+            <p>
+                <a href="/advert/<%= entry.id %>/edit">
+                    <button>Edit advert: <%= entry.animal_name %></button>
+                </a>
+            </p>
+
+            <form action="/advert/<%= entry.id %>" method ="POST"%>
+                <input type="hidden" name="_method" value="DELETE">     
+                <button>Delete Advert: <%= entry.animal_name %></button>
+            </form>   
         </article>
     <%end%>
 <%end%>

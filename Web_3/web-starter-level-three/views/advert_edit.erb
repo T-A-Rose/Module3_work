@@ -1,0 +1,23 @@
+<h1> Edit the advert </h1>
+
+<form action="/advert/<%= advert.id %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <p>
+    <label for="species">Species</label>
+    <br>
+    <input type="text" id="species" name="species" value="<%= advert.species %>">
+  </p>
+  <p>
+    <label for="animal_name">Animals name</label>
+    <br>
+    <input type="text" id="animal_name" name="animal_name" value="<%= advert.animal_name %>">
+  </p>
+  <p>
+    <label for="colour">Animal colour</label>
+    <br>
+    <input type="text" id="colour" name="colour" value="<%= advert.colour %>">
+  </p>
+
+  <input type="submit" value="Save edited advert">
+</form>
