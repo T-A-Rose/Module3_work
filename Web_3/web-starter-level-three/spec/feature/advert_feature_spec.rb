@@ -51,8 +51,8 @@ RSpec.describe "advert feature", type: :feature do
       fill_in "colour", with: "Black"
       click_button "Add advert" # - The computer clicks, "Add advert" which takes me back to the /advert page
 
-      click_button "Edit advert: Monty"
-      
+      click_link "Edit advert: Monty"
+      # save_and_open_page
       fill_in "species", with: "Dog" 
       fill_in "animal_name", with: "Gerrard"
       fill_in "colour", with: "Golden"
@@ -63,33 +63,4 @@ RSpec.describe "advert feature", type: :feature do
       expect(page).to have_content "Gerrard"
       expect(page).to have_content "Golden"
     end
-
-    it "updates the advert" do
-      visit "/advert"
-      click_link "Add new advert"
-      fill_in "species", with: "Cat" 
-      fill_in "animal_name", with: "Monty"
-      fill_in "colour", with: "Black"
-      click_button "Add advert" # - The computer clicks, "Add advert" which takes me back to the /advert page
-
-      fill_in "species", with: "Dog" 
-      fill_in "animal_name", with: "Gerrard"
-      fill_in "colour", with: "Golden"
-      click_button "Save edited advert"
-
-      click_button "Edit advert: Monty"
-
-      fill_in "species", with: "horse"
-      fill_in "animal_name", with: "Blacky"
-      fill_in "colour", with: "Grey"
-      click_button "Save edited advert"
-
-
-      expect(page).to have_content "Cat"
-      expect(page).to have_content "Monty"
-      expect(page).to have_content "Gerrard"
-      expect(page).to have_content "Blacky"
-
-    end
-  end
 end

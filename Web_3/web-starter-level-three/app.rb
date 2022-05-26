@@ -74,7 +74,7 @@ class WebApplicationServer < Sinatra::Base
 
   patch '/advert/:index' do
     advert_index = params[:index].to_i
-    advert_table.update(advert_index, params[:species])
+    advert_table.update(advert_index, params[:species], params[:animal_name], params[:colour])
     redirect '/advert'
   end
 

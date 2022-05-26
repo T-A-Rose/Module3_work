@@ -1,14 +1,14 @@
-<h1>list your advert here</h1>
+<h1 style = "text-align: center;">List your advert here!</h1>
 
 <% if advert.empty? %>
     There are no listings currently!
 <% else %>
     <% advert.each_with_index do |entry| %>
         <article>
-            <h1 style ="text-align: center;">Lost animal: <%= entry.animal_name %> </h1>
-            <h3>Animal species: <%= entry.species %> </h3>
-            <h3>Animal name: <%= entry.animal_name %> </h3>
-            <h3>Animal colour: <%= entry.colour %> </h3>
+            <u><h2 style ="text-align: center;">Lost animal: <%= entry.animal_name %> </h2></u>
+            <h4><u>Animal species</u>: <%= entry.species %> </h4>
+            <h4><u>Animal name</u>: <%= entry.animal_name %> </h4>
+            <h4><u>Animal colour</u>: <%= entry.colour %> </h4>
         
             <p>
                 <a href="/advert/<%= entry.id %>/edit">

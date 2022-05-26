@@ -18,8 +18,8 @@ class AdvertTable
     result = @db.run("DELETE FROM adverts WHERE id = $1;", [index])
   end
 
-  def update(index, species)
-    result = @db.run("UPDATE adverts SET species = $1, animal_name = $3, colour = $4 WHERE id = $2;", [species, index])
+  def update(index, species, animal_name, colour)
+    result = @db.run("UPDATE adverts SET species = $1, animal_name = $3, colour = $4 WHERE id = $2;", [species, index, animal_name, colour])
   end
 
   def get(index)
