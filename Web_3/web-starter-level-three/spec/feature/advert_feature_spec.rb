@@ -16,10 +16,16 @@ RSpec.describe "advert feature", type: :feature do
       fill_in "species", with: "Cat" 
       fill_in "animal_name", with: "Monty"
       fill_in "colour", with: "Black"
+      fill_in "owner_name", with: "Tom"
+      fill_in "owner_ci", with: "12345"
+      fill_in "animal_found", with: "f"
       click_button "Add advert" # - The computer clicks, "Add advert" which takes me back to the /advert page
       expect(page).to have_content "Cat"
       expect(page).to have_content "Monty"
       expect(page).to have_content "Black"
+      expect(page).to have_content "Tom"
+      expect(page).to have_content "12345"
+      expect(page).to have_content "f"
     end
 
     it "delete advert" do
@@ -28,12 +34,18 @@ RSpec.describe "advert feature", type: :feature do
       fill_in "species", with: "Cat" 
       fill_in "animal_name", with: "Monty"
       fill_in "colour", with: "Black"
+      fill_in "owner_name", with: "Tom"
+      fill_in "owner_ci", with: "12345"
+      fill_in "animal_found", with: "f"
       click_button "Add advert" # - The computer clicks, "Add advert" which takes me back to the /advert page
 
       click_link "Add new advert" # - The computer clicks the "Add new advert" link on the page
       fill_in "species", with: "Dog" 
       fill_in "animal_name", with: "Ruby"
       fill_in "colour", with: "Red"
+      fill_in "owner_name", with: "Jake"
+      fill_in "owner_ci", with: "54321"
+      fill_in "animal_found", with: "t"
       click_button "Add advert" # - The computer clicks, "Add advert" which takes me back to the /advert page
 
       click_button "Delete Advert: Monty"
@@ -56,6 +68,9 @@ RSpec.describe "advert feature", type: :feature do
       fill_in "species", with: "Dog" 
       fill_in "animal_name", with: "Gerrard"
       fill_in "colour", with: "Golden"
+      fill_in "owner_name", with: "Tom"
+      fill_in "owner_ci", with: "123456"
+      fill_in "animal_found", with: "t"
       click_button "Save edited advert" # - The computer clicks, "Add advert" which takes me back to the /advert page
 
       expect(page).to have_content "Dog"

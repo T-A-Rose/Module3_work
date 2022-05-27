@@ -20,9 +20,9 @@ RSpec.describe AdvertTable do
 
     # Note — just assuming the indexes are 1, 2, 3 doesn't work anymore
     # We need to let the database tell us what it has set the ID to.
-    cat_id = advert_table.add(AdvertEntry.new("Cat", "Monty", "Black"))
-    dog_id = advert_table.add(AdvertEntry.new("Dog", "Steve", "White"))
-    frog_id = advert_table.add(AdvertEntry.new("Frog", "Fredrick", "Green"))
+    cat_id = advert_table.add(AdvertEntry.new("Cat", "Monty", "Black", "Tom", "12345", "f", "TomTestPassword"))
+    dog_id = advert_table.add(AdvertEntry.new("Dog", "Steve", "White", "Tom", "12345", "f", "TomTestPassword"))
+    frog_id = advert_table.add(AdvertEntry.new("Frog", "Fredrick", "Green", "Tom", "12345", "f", "TomTestPassword"))
 
     advert_table.remove(dog_id)
 

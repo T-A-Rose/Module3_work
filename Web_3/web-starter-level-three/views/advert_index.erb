@@ -4,26 +4,33 @@
     There are no listings currently!
 <% else %>
     <% advert.each_with_index do |entry| %>
-        <article>
-            <u><h2 style ="text-align: center;">Lost animal: <%= entry.animal_name %> </h2></u>
-            <h4><u>Animal species</u>: <%= entry.species %> </h4>
-            <h4><u>Animal name</u>: <%= entry.animal_name %> </h4>
-            <h4><u>Animal colour</u>: <%= entry.colour %> </h4>
+        <% if entry.adv_pass.empty? %>
         
-            <p>
-                <a href="/advert/<%= entry.id %>/edit">
-                    <button>Edit advert: <%= entry.animal_name %></button>
-                </a>
-            </p>
+        <%else %>
+            <article>
+                <u><h2 style ="text-align: center;">Lost animal: <%= entry.animal_name %> </h2></u>
+                <h4><u>Animal species</u>: <%= entry.species %> </h4>
+                <h4><u>Animal name</u>: <%= entry.animal_name %> </h4>
+                <h4><u>Animal colour</u>: <%= entry.colour %> </h4>
+                <h4><u>Owners name</u>: <%= entry.owner_name %> </h4>
+                <h4><u>Owners contact number</u>: <%= entry.owner_ci %> </h4>
+                <h4><u>Animal found</u>: <%= entry.animal_found %> </h4>
+            
+                <p>
+                    <a href="/advert/<%= entry.id %>/edit">
+                        <button>Edit advert: <%= entry.animal_name %></button>
+                    </a>
+                </p>
 
-            <form action="/advert/<%= entry.id %>" method ="POST"%>
-                <input type="hidden" name="_method" value="DELETE">     
-                <button>Delete Advert: <%= entry.animal_name %></button>
-            </form>   
-        </article>
+                <form action="/advert/<%= entry.id %>" method ="POST"%>
+                    <input type="hidden" name="_method" value="DELETE">     
+                    <button>Delete Advert: <%= entry.animal_name %></button>
+                </form>   
+            </article>
+        <%end%>
     <%end%>
 <%end%>
 
-<p>
+ <p>
     <a href="/advert/new">Add new advert</a>
 </p>

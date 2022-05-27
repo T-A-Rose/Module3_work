@@ -54,7 +54,7 @@ class WebApplicationServer < Sinatra::Base
   end
 
   post '/advert' do
-    advert = AdvertEntry.new(params[:species], params[:animal_name], params[:colour])
+    advert = AdvertEntry.new(params[:species], params[:animal_name], params[:colour], params[:owner_name], params[:owner_ci], params[:animal_found], params[:adv_pass])
     advert_table.add(advert)
     redirect '/advert'
   end
@@ -74,7 +74,7 @@ class WebApplicationServer < Sinatra::Base
 
   patch '/advert/:index' do
     advert_index = params[:index].to_i
-    advert_table.update(advert_index, params[:species], params[:animal_name], params[:colour])
+    advert_table.update(advert_index, params[:species], params[:animal_name], params[:colour], params[:owner_name], params[:owner_ci], params[:animal_found])
     redirect '/advert'
   end
 

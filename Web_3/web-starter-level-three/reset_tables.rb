@@ -7,7 +7,15 @@ require "database_connection"
 
 def reset_tables(db)
   db.run("DROP TABLE IF EXISTS adverts;")
-  db.run("CREATE TABLE adverts (id SERIAL PRIMARY KEY, species TEXT NOT NULL, animal_name TEXT NOT NULL, colour TEXT NOT NULL);")
+  db.run("CREATE TABLE adverts (
+    id SERIAL PRIMARY KEY, 
+    species TEXT NOT NULL, 
+    animal_name TEXT NOT NULL, 
+    colour TEXT NOT NULL, 
+    owner_name TEXT NOT NULL, 
+    owner_ci TEXT NOT NULL, 
+    animal_found boolean DEFAULT false, 
+    adv_pass TEXT NOT NULL);")
 end
 
 dev_db = DatabaseConnection.new("localhost", "web_application_dev")
